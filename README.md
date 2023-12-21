@@ -16,7 +16,16 @@ This project implements the parallel prefix sum algorithm using inclusive scan. 
 g++ main.cpp -o main -std=c++17 -ltbb
 ./main
 
-For GPU
-nvcc prefix.cu -o prefix
-./prefix
+I have used Google collab for execution as well as profiling for my cuda code using Nsight Systems.
 
+Run the following commands in a Colab cell to install Nsight Systems:
+
+!wget https://developer.download.nvidia.com/devtools/repos/ubuntu1804/x86_64/nvidia-nsight-systems-2022_2022.1.1.8-1_amd64.deb
+!dpkg -i nvidia-nsight-systems-2022_2022.1.1.8-1_amd64.deb
+!apt-get install -f
+
+# Compile the CUDA code
+!nvcc -o prefix prefix.cu
+
+# Run the executable with Nsight Systems profiling
+!nsys profile -t cuda --stats=true ./prefix
